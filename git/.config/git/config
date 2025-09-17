@@ -1,0 +1,22 @@
+# NOTE: Set the following in /etc/gitconfig
+# [user]
+#     name = Thitat Auareesuksakul
+#     email = flux@thitat.net
+
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    line-numbers = true
+    syntax-theme = gruvbox-dark
+
+[merge]
+    conflictStyle = zdiff3
