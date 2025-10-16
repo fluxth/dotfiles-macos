@@ -1,5 +1,32 @@
 # dotfiles-macos
 
+## Quick Start
+
+Use the unified management script to install or update your dotfiles:
+
+```bash
+# Install everything
+./manage.sh install
+
+# Update everything
+./manage.sh update
+
+# Install specific components
+./manage.sh install homebrew
+./manage.sh install formulas
+./manage.sh install omz
+
+# Update specific components
+./manage.sh update homebrew
+./manage.sh update zsh-plugins
+./manage.sh update dotfiles
+```
+
+For a full list of available commands and components, run:
+```bash
+./manage.sh
+```
+
 ## Manual setup steps
 
 - Go into `System Settings`
