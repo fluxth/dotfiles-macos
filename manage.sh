@@ -17,6 +17,18 @@ ZSH_PLUGINS=(
     "https://github.com/zsh-users/zsh-completions"
 )
 
+# Dotfiles directories to link/unlink
+LINK_DIRS=(
+    yabai
+    skhd
+    spacebar
+    alacritty
+    karabiner
+    zsh
+    tmux
+    git
+)
+
 # Function to print colored output
 print_status() {
     echo -e "${BLUE}[INFO]${NC} $1"
@@ -36,11 +48,13 @@ print_error() {
 
 # Function to show usage
 show_usage() {
-    echo "Usage: $0 {install|update} [component]"
+    echo "Usage: $0 {install|update|link|unlink} [component]"
     echo ""
     echo "Commands:"
     echo "  install [component]  - Install components"
     echo "  update [component]   - Update components"
+    echo "  link                 - Link dotfiles using stow"
+    echo "  unlink               - Unlink dotfiles using stow"
     echo ""
     echo "Install components:"
     echo "  homebrew            - Install Homebrew"
@@ -427,6 +441,38 @@ update_all() {
     print_status "to see the changes take effect."
 }
 
+# Function to link dotfiles
+link_dotfiles() {
+    print_status "Linking dotfiles..."
+
+    for dir in "${LINK_DIRS[@]}"; do
+        print_status "Linking \"$dir\""
+        if stow "$dir"; then
+            print_success "Successfully linked $dir"
+        else
+            print_error "Failed to link $dir"
+        fi
+    done
+
+    print_success "Dotfiles linking completed!"
+}
+
+# Function to unlink dotfiles
+unlink_dotfiles() {
+    print_status "Unlinking dotfiles..."
+
+    for dir in "${LINK_DIRS[@]}"; do
+        print_status "Unlinking \"$dir\""
+        if stow -D "$dir"; then
+            print_success "Successfully unlinked $dir"
+        else
+            print_error "Failed to unlink $dir"
+        fi
+    done
+
+    print_success "Dotfiles unlinking completed!"
+}
+
 # =============================================================================
 # MAIN SCRIPT LOGIC
 # =============================================================================
@@ -509,6 +555,12 @@ case "$command" in
                 exit 1
                 ;;
         esac
+        ;;
+    link)
+        link_dotfiles
+        ;;
+    unlink)
+        unlink_dotfiles
         ;;
     *)
         echo "Unknown command: $command"

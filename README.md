@@ -11,6 +11,12 @@ Use the unified management script to install or update your dotfiles:
 # Update everything
 ./manage.sh update
 
+# Link dotfiles
+./manage.sh link
+
+# Unlink dotfiles
+./manage.sh unlink
+
 # Install specific components
 ./manage.sh install homebrew
 ./manage.sh install formulas
