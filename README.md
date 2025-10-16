@@ -2,9 +2,10 @@
 
 ## Quick Start
 
-Use the unified management script to install or update your dotfiles:
-
 ```bash
+# Show help / list of commands
+./manage.sh
+
 # Install everything
 ./manage.sh install
 
@@ -28,20 +29,16 @@ Use the unified management script to install or update your dotfiles:
 ./manage.sh update dotfiles
 ```
 
-For a full list of available commands and components, run:
-```bash
-./manage.sh
-```
-
 ## Manual setup steps
+
+There's only so much you can put into dotfiles in macOS...
 
 - Go into `System Settings`
     - `Desktop & Dock` and set all `Hot Corners...` to `OFF`
     - `Desktop & Dock > Mission Control` and set `Automatically rearrange Spaces based on most recent use` to `OFF`
     - `Desktop & Dock > Desktop & Stage Manager` and set `Click wallpaper to reveal desktop` to `Only in Stage Manager`
-    - `Keyboard Shortcuts > Mission Control` and disable all `Move * a space`
-    - Add lots of desktops then:
-        - `Keyboard Shortcuts > Mission Control` and set all `Switch to Desktop [number]` to `ctrl + opt + cmd + [number]`
+    - `Keyboard Shortcuts > Mission Control` and disable all `Move [*] a space`
+    - `Keyboard Shortcuts > Mission Control` and set all `Switch to Desktop [number]` to `ctrl + opt + cmd + [number]`
     - `Keyboard Shortcuts > Modifier Keys` and set `Caps Lock key` to `Escape`
     - `Keyboard` and set `Key repeat rate` to `Fast (MAX)`
     - `Keyboard` and set `Delay until repeat` to `Short (MAX)`
@@ -51,3 +48,11 @@ For a full list of available commands and components, run:
 
 - Setup SSH key
     - `ssh-keygen -t ed25519`
+
+- Apps that need to be installed manually
+    - Docker Desktop
+    - KensingtonWorks (if using Kensington Trackball Mouse)
+
+- Setup neovim config
+    - https://github.com/fluxth/nvim-config
+    - TODO: Add to automation script later
