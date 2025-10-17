@@ -1,4 +1,12 @@
-# NOTE: Set the following in /etc/gitconfig
+# NOTE: Set the following in your system git config
+#
+# Find out by:
+# - git config --show-origin --show-scope --list
+#
+# Should be in:
+# - /etc/gitconfig
+# - /opt/homebrew/etc/gitconfig
+
 # [user]
 #     name = Thitat Auareesuksakul
 #     email = flux@thitat.net
