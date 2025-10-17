@@ -1,5 +1,44 @@
 #!/usr/bin/env sh
 
+configure_display_padding() {
+    # Check if any display is larger than 2K and set global padding accordingly
+    HAS_LARGE_DISPLAY=false
+    for display in $(yabai -m query --displays | jq -c '.[]'); do
+        display_width=$(echo "$display" | jq -r '.frame.w' | cut -d. -f1)
+        display_height=$(echo "$display" | jq -r '.frame.h' | cut -d. -f1)
+
+        if [ "$display_width" -gt 2560 ] && [ "$display_height" -gt 1440 ]; then
+            HAS_LARGE_DISPLAY=true
+            break
+        fi
+    done
+
+    if [ "$HAS_LARGE_DISPLAY" = true ]; then
+        # Set padding and gap for displays larger than 2K
+        yabai -m config top_padding    10
+        yabai -m config bottom_padding 10
+        yabai -m config left_padding   10
+        yabai -m config right_padding  10
+        yabai -m config window_gap     10
+    else
+        # Set padding and gap to 0 for smaller displays
+        yabai -m config top_padding    0
+        yabai -m config bottom_padding 0
+        yabai -m config left_padding   0
+        yabai -m config right_padding  0
+        yabai -m config window_gap     0
+    fi
+}
+
+# Check if script was called with 'configure-display' argument
+if [ "$1" = "configure-display" ]; then
+    configure_display_padding
+    exit 0
+fi
+
+yabai -m signal --add event=display_added action="~/.config/yabai/yabairc configure-display"
+yabai -m signal --add event=display_removed action="~/.config/yabai/yabairc configure-display"
+
 # for this to work you must configure sudo such that
 # it will be able to run the command without password
 #
@@ -25,16 +64,14 @@ yabai -m config                                 \
     split_ratio                  0.50           \
     split_type                   auto           \
     auto_balance                 off            \
-    top_padding                  10             \
-    bottom_padding               10             \
-    left_padding                 10             \
-    right_padding                10             \
-    window_gap                   10             \
     layout                       bsp            \
     mouse_modifier               cmd            \
     mouse_action1                move           \
     mouse_action2                resize         \
     mouse_drop_action            swap
+
+# Configure display-specific padding and gap
+configure_display_padding
 
 # float system preferences
 yabai -m rule --add app='^System Information$' manage=off
