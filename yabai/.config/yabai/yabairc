@@ -1,12 +1,11 @@
 #!/usr/bin/env sh
 
-#
 # for this to work you must configure sudo such that
 # it will be able to run the command without password
 #
 # see this wiki page for information:
 #  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
-#
+
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
@@ -31,8 +30,8 @@ yabai -m config                                 \
     left_padding                 10             \
     right_padding                10             \
     window_gap                   10             \
-    layout                       bsp           \
-    mouse_modifier               cmd           \
+    layout                       bsp            \
+    mouse_modifier               cmd            \
     mouse_action1                move           \
     mouse_action2                resize         \
     mouse_drop_action            swap
@@ -48,6 +47,9 @@ yabai -m rule --add title='Settings$' manage=off
 
 # spacebar padding on top screen
 SPACEBAR_HEIGHT=$(spacebar -m config height)
+if [ -z "$SPACEBAR_HEIGHT" ]; then
+    SPACEBAR_HEIGHT=32
+fi
 yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
 
 echo "yabai configuration loaded.."
