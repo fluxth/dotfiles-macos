@@ -7,7 +7,7 @@ configure_display_padding() {
         display_width=$(echo "$display" | jq -r '.frame.w' | cut -d. -f1)
         display_height=$(echo "$display" | jq -r '.frame.h' | cut -d. -f1)
 
-        if [ "$display_width" -gt 2560 ] && [ "$display_height" -gt 1440 ]; then
+        if [ "$display_width" -ge 2560 ] && [ "$display_height" -ge 1440 ]; then
             HAS_LARGE_DISPLAY=true
             break
         fi
