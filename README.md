@@ -46,6 +46,7 @@ There's only so much you can put into dotfiles in macOS...
     - `Appearance` and set `Allow wallpaper tinting in windows` to `OFF`
     - `Control Center` and set `Automatically hide and show the menu bar` to `Always`
     - `Sound` and set `Play feedback when volume is changed` to `ON`
+    - `Privacy & Security > Developer tools` and set `Alacritty` to `ON`
 
 - Setup SSH key
     - `ssh-keygen -t ed25519`
