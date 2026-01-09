@@ -21,7 +21,7 @@ ZSH_PLUGINS=(
 LINK_DIRS=(
     yabai
     skhd
-    spacebar
+    sketchybar
     alacritty
     karabiner
     zsh
@@ -61,7 +61,7 @@ show_usage() {
     echo "  formulas            - Install brew formulas"
     echo "  formulas-work2025   - Install brew formulas (Work 2025 specific)"
     echo "  casks               - Install brew casks"
-    echo "  wm                  - Install window manager tools (yabai, skhd, spacebar)"
+    echo "  wm                  - Install window manager tools (yabai, skhd, sketchybar)"
     echo "  omz                 - Install Oh My Zsh"
     echo "  tpm                 - Install Tmux Plugin Manager"
     echo "  all                 - Install everything (default)"
@@ -150,6 +150,7 @@ install_casks() {
     print_status "Installing brew casks..."
     if brew install --cask \
         alacritty \
+        font-hack-nerd-font \
         font-meslo-lg-nerd-font \
         font-fontawesome \
         karabiner-elements; then
@@ -162,9 +163,9 @@ install_casks() {
 
 # Function to install window manager tools
 install_wm() {
-    print_status "Installing window manager tools (yabai, skhd, spacebar)..."
+    print_status "Installing window manager tools (yabai, skhd, sketchybar)..."
     if brew install \
-        cmacrae/formulae/spacebar \
+        FelixKratz/formulae/sketchybar \
         koekeishiya/formulae/skhd \
         koekeishiya/formulae/yabai; then
         print_success "Window manager tools installation complete"
@@ -178,7 +179,7 @@ install_wm() {
         print_status "  3. Start services with:"
         print_status "     yabai --start-service"
         print_status "     skhd --start-service"
-        print_status "     brew services start spacebar"
+        print_status "     brew services start sketchybar"
     else
         print_error "Window manager tools installation failed"
         return 1
@@ -260,7 +261,7 @@ install_all() {
     echo
     print_warning "Optional components not installed by default:"
     print_status "  - formulas-work2025: Work-specific brew formulas"
-    print_status "  - wm: Window manager tools (yabai, skhd, spacebar)"
+    print_status "  - wm: Window manager tools (yabai, skhd, sketchybar)"
     print_status "Run './manage.sh install <component>' to install these separately."
 }
 
