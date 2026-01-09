@@ -30,6 +30,14 @@ configure_display_padding() {
     fi
 }
 
+configure_spacebar_padding() {
+    SPACEBAR_HEIGHT=$(spacebar -m config height)
+    if [ -z "$SPACEBAR_HEIGHT" ]; then
+        SPACEBAR_HEIGHT=32
+    fi
+    yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
+}
+
 # Check if script was called with 'configure-display' argument
 if [ "$1" = "configure-display" ]; then
     configure_display_padding
@@ -83,10 +91,6 @@ yabai -m rule --add title='Preferences$' manage=off
 yabai -m rule --add title='Settings$' manage=off
 
 # spacebar padding on top screen
-SPACEBAR_HEIGHT=$(spacebar -m config height)
-if [ -z "$SPACEBAR_HEIGHT" ]; then
-    SPACEBAR_HEIGHT=32
-fi
-yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
+configure_spacebar_padding
 
 echo "yabai configuration loaded.."
