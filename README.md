@@ -44,7 +44,9 @@ There's only so much you can put into dotfiles in macOS...
     - `Keyboard` and set `Delay until repeat` to `Short (MAX)`
     - `Keyboard` and set `Press Globe key to` to `Show Emoji & Symbols`
     - `Appearance` and set `Allow wallpaper tinting in windows` to `OFF`
-    - `Control Center` and set `Automatically hide and show the menu bar` to `Always`
+    - `Appearance` and set `Liquid Glass` to `Tinted`
+    - `Menu Bar` and set `Automatically hide and show the menu bar` to `Always`
+    - `Menu Bar` and set `Show menu bar background` to `ON`
     - `Sound` and set `Play feedback when volume is changed` to `ON`
     - `Privacy & Security > Developer tools` and set `Alacritty` to `ON`
 
